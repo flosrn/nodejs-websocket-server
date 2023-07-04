@@ -6,5 +6,7 @@
 
 # Environment variables
 /env.ts
-/.env
 .env
+
+# IDE files
+.idea/
