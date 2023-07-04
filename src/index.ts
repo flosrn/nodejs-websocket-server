@@ -1,9 +1,7 @@
+import { WebSocketServer } from "ws";
+import { Midjourney } from "midjourney";
 import { config } from "dotenv";
 config();
-
-import { WebSocketServer } from "ws";
-import { keepAlive } from "./utils/keepalive";
-import { Midjourney } from "midjourney";
 
 const wss = new WebSocketServer({ port: Number(process.env.PORT) });
 
@@ -34,5 +32,5 @@ wss.on("connection", (ws) => {
   });
 });
 
-const interval = keepAlive(wss);
-wss.on("close", () => clearInterval(interval));
+// const interval = keepAlive(wss);
+// wss.on("close", () => clearInterval(interval));
