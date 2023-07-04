@@ -1,11 +1,10 @@
-import app from "./app";
+import { config } from "dotenv";
+config();
 
-const FASTIFY_PORT = Number(process.env.FASTIFY_PORT) || 3006;
+import { createServer } from "http";
 
-console.log("FASTIFY_PORT : ", FASTIFY_PORT);
-
-app.listen({ port: FASTIFY_PORT });
-
-console.log(`🚀  Fastify server running on port ${FASTIFY_PORT}`);
-console.log(`Route index: /`);
-console.log(`Route user: /api/v1/user`);
+createServer((_, res) => {
+  console.log("process.env.PORT : ", process.env.PORT);
+  res.write("Hello World!");
+  res.end();
+}).listen(process.env.PORT);
