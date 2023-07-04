@@ -6,11 +6,6 @@
     "module": "CommonJS",
     "moduleResolution": "node",
     "outDir": "dist",
-    "paths": {
-      "~/*": [
-        "./src/*"
-      ]
-    },
     "target": "ESNext"
   }
 }

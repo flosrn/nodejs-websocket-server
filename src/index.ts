@@ -1,15 +1,9 @@
 import { config } from "dotenv";
 config();
 
-import { createServer } from "http";
 import { WebSocketServer } from "ws";
+import { keepAlive } from "./utils/keepalive";
 // import { Midjourney } from "midjourney";
-
-const httpServer = createServer();
-
-httpServer.listen(process.env.PORT, () => {
-  console.log(`Server is listening on ${process.env.PORT}`);
-});
 
 const wss = new WebSocketServer({ port: Number(process.env.PORT) });
 
@@ -39,3 +33,6 @@ wss.on("connection", (ws) => {
     // client.Close();
   });
 });
+
+const interval = keepAlive(wss);
+wss.on("close", () => clearInterval(interval));
