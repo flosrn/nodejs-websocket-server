@@ -1,23 +1,33 @@
 {
-	"name": "node-ts",
+	"name": "nodejs-websocket-server",
 	"version": "0.0.0",
-	"author": "dayblox",
+	"author": "flosrn",
 	"description": "Node.js & TypeScript starter",
+	"scripts": {
+		"watch": "tsc --watch --preserveWatchOutput --pretty & nodemon",
+		"dev": "cross-env NODE_ENV=development nodemon",
+		"format": "prettier --write \"src/**/*.ts\"",
+		"build": "rimraf dist && tsc",
+		"start": "node dist/index.js"
+	},
+	"dependencies": {
+		"esbuild": "^0.18.11",
+		"fastify": "^4.19.2",
+		"zod": "^3.21.4"
+	},
+	"devDependencies": {
+		"@types/node": "^20.3.3",
+		"cross-env": "^7.0.3",
+		"eslint": "^8.44.0",
+		"fastify-tsconfig": "^1.0.1",
+		"nodemon": "^2.0.22",
+		"prettier": "^2.8.8",
+		"rimraf": "^5.0.0",
+		"tsconfig-paths": "^4.2.0",
+		"typescript": "^5.0.4"
+	},
 	"engines": {
 		"node": ">=18.11",
 		"pnpm": ">=7.27"
-	},
-	"scripts": {
-		"dev": "pnpm /dev:.*/",
-		"dev:build": "esbuild dev.ts ./src --bundle --outdir=dist --packages=external --platform=node --sourcemap --watch",
-		"dev:run": "node --inspect --no-warnings --loader ./dist/dev.js --watch dist/src",
-		"build": "esbuild index=./src --bundle --minify --outdir=dist --packages=external --platform=node",
-		"start": "node dist"
-	},
-	"dependencies": {
-		"esbuild": "^0.18.11"
-	},
-	"devDependencies": {
-		"@types/node": "^20.3.3"
 	}
 }
