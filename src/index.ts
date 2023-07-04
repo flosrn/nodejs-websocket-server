@@ -2,7 +2,7 @@ import { config } from "dotenv";
 config();
 
 import { createServer } from "http";
-import { Server as WebsocketServer } from "ws";
+import { WebSocketServer } from "ws";
 // import { Midjourney } from "midjourney";
 
 const httpServer = createServer();
@@ -11,9 +11,9 @@ httpServer.listen(process.env.PORT, () => {
   console.log(`Server is listening on ${process.env.PORT}`);
 });
 
-const wsServer = new WebsocketServer({ server: httpServer });
+const wss = new WebSocketServer({ port: Number(process.env.PORT) });
 
-wsServer.on("connection", (ws) => {
+wss.on("connection", (ws) => {
   ws.on("message", async (event) => {
     const prompt = event.toString();
     console.log("prompt:", prompt);
