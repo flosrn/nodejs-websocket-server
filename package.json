@@ -13,7 +13,7 @@
 	"dependencies": {
 		"dotenv": "^16.3.1",
 		"esbuild": "^0.18.11",
-		"midjourney": "^4.0.97",
+		"midjourney": "github:flosrn/midjourney-client",
 		"ws": "^8.13.0"
 	},
 	"devDependencies": {
