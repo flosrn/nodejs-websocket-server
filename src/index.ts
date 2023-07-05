@@ -19,7 +19,6 @@ wss.on("connection", (ws) => {
       Ws: true,
     });
     await client.init();
-
     const result = await client.Imagine(
       prompt,
       (uri: string, progress: string) => {
@@ -28,6 +27,7 @@ wss.on("connection", (ws) => {
     );
 
     ws.send(JSON.stringify(result));
+    ws.send(JSON.stringify({ done: true }));
     client.Close();
   });
 });
