@@ -12,8 +12,8 @@ dependencies:
     specifier: ^0.18.11
     version: 0.18.11
   midjourney:
-    specifier: github:flosrn/midjourney-client
-    version: github.com/flosrn/midjourney-client/107f28f58f4de5ae57b700841a49d96918e2181c
+    specifier: github:flosrn/midjourney-api
+    version: github.com/flosrn/midjourney-api/314bed7ba63b45f3f4f5ed019ec9393b9eb4dd11
   ws:
     specifier: ^8.13.0
     version: 8.13.0
@@ -336,16 +336,16 @@ packages:
       '@types/node': 20.3.3
     dev: true
 
-  /acorn-jsx@5.3.2(acorn@8.9.0):
+  /acorn-jsx@5.3.2(acorn@8.10.0):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      acorn: 8.9.0
+      acorn: 8.10.0
     dev: true
 
-  /acorn@8.9.0:
-    resolution: {integrity: sha512-jaVNAFBHNLXspO543WnNNPZFRtavh3skAkITqD0/2aeMkKZTN+254PyhwxFYrk3vQ1xfY+2wbesJMs/JC8/PwQ==}
+  /acorn@8.10.0:
+    resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
@@ -551,8 +551,8 @@ packages:
     resolution: {integrity: sha512-1FH/IiruXZ84tpUlm0aCUEwMl2Ho5ilqVh0VvQXw+byAz/4SAciyHLlfmL5WYqsvD38oymdUwBss0LtK8m4s/A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.9.0
-      acorn-jsx: 5.3.2(acorn@8.9.0)
+      acorn: 8.10.0
+      acorn-jsx: 5.3.2(acorn@8.10.0)
       eslint-visitor-keys: 3.4.1
     dev: true
 
@@ -1018,9 +1018,9 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/flosrn/midjourney-client/107f28f58f4de5ae57b700841a49d96918e2181c:
-    resolution: {tarball: https://codeload.github.com/flosrn/midjourney-client/tar.gz/107f28f58f4de5ae57b700841a49d96918e2181c}
-    name: midjourney
+  github.com/flosrn/midjourney-api/314bed7ba63b45f3f4f5ed019ec9393b9eb4dd11:
+    resolution: {tarball: https://codeload.github.com/flosrn/midjourney-api/tar.gz/314bed7ba63b45f3f4f5ed019ec9393b9eb4dd11}
+    name: midjourney-api
     version: 4.0.0
     engines: {node: '>=18'}
     dependencies:
