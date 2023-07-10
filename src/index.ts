@@ -12,11 +12,11 @@ wss.on("connection", (ws) => {
       const data = event.toString();
 
       const { generationType, prompt, content, index } = JSON.parse(data);
-//      console.log("generationType", generationType);
-//      console.log("data", data);
-//      console.log("prompt", prompt);
-//      console.log("content", content);
-//      console.log("index", index);
+      //      console.log("generationType", generationType);
+      //      console.log("data", data);
+      //      console.log("prompt", prompt);
+      //      console.log("content", content);
+      //      console.log("index", index);
 
       const client = new Midjourney({
         ServerId: <string>process.env.SERVER_ID,
@@ -54,7 +54,7 @@ wss.on("connection", (ws) => {
           client.Close();
       }
 
-      ws.send(JSON.stringify(result));
+      ws.send(JSON.stringify({ ...result, generationType }));
       client.Close();
     } catch (error) {
       console.error("An error occurred:", error);
