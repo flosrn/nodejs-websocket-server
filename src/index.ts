@@ -50,6 +50,17 @@ wss.on("connection", (ws) => {
             },
           });
           break;
+          case "variation":
+            result = await client.Variation({
+              index,
+              msgId: content.id,
+              hash: content.hash,
+              flags: null,
+              loading: (uri: string, progress: string) => {
+                ws.send(JSON.stringify({ uri, progress }));
+                },
+            });
+            break;
         default:
           client.Close();
       }
