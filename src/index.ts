@@ -10,13 +10,10 @@ wss.on("connection", (ws) => {
   ws.on("message", async (event) => {
     try {
       const data = event.toString();
+      const parsedData = JSON.parse(data);
+      console.log("parsedData", parsedData);
 
-      const { generationType, prompt, content, index } = JSON.parse(data);
-      //      console.log("generationType", generationType);
-      //      console.log("data", data);
-      //      console.log("prompt", prompt);
-      //      console.log("content", content);
-      //      console.log("index", index);
+      const { generationType, prompt, content, index, option } = parsedData;
 
       const client = new Midjourney({
         ServerId: <string>process.env.SERVER_ID,
@@ -44,28 +41,54 @@ wss.on("connection", (ws) => {
             index,
             msgId: content.id,
             hash: content.hash,
-            flags: null,
+            flags: content.flags,
             loading: (uri: string, progress: string) => {
               ws.send(JSON.stringify({ uri, progress }));
             },
           });
           break;
-          case "variation":
-            result = await client.Variation({
-              index,
-              msgId: content.id,
-              hash: content.hash,
-              flags: null,
-              loading: (uri: string, progress: string) => {
-                ws.send(JSON.stringify({ uri, progress }));
-                },
-            });
-            break;
+        case "variation":
+          result = await client.Variation({
+            index,
+            msgId: content.id,
+            hash: content.hash,
+            flags: content.flags,
+            loading: (uri: string, progress: string) => {
+              ws.send(JSON.stringify({ uri, progress }));
+            },
+          });
+          break;
+        case "vary":
+          const varyOption = option.charAt(0).toUpperCase() + option.slice(1);
+          const varyStrong = content.options?.find(
+            (option) => option.label === `Vary (${varyOption})`
+          );
+          result = await client.Custom({
+            msgId: content.id,
+            flags: content.flags,
+            content: prompt,
+            customId: varyStrong.custom,
+            loading: (uri: string, progress: string) => {
+              ws.send(JSON.stringify({ uri, progress }));
+            },
+          });
+          break;
+        case "zoomOut":
+          result = await client.ZoomOut({
+            level: option,
+            msgId: content.id,
+            hash: content.hash,
+            flags: content.flags,
+            loading: (uri: string, progress: string) => {
+              ws.send(JSON.stringify({ uri, progress }));
+            },
+          });
+          break;
         default:
           client.Close();
       }
 
-      ws.send(JSON.stringify({ ...result, generationType }));
+      ws.send(JSON.stringify({ ...result, generationType, index }));
       client.Close();
     } catch (error) {
       console.error("An error occurred:", error);
