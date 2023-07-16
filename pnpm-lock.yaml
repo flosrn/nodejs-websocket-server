@@ -13,7 +13,7 @@ dependencies:
     version: 0.18.11
   midjourney:
     specifier: github:flosrn/midjourney-api
-    version: github.com/flosrn/midjourney-api/76d49f094a79408484d643cefb5a595f4187671e
+    version: github.com/flosrn/midjourney-api/d22fb70cb71209ea139044cfdde992285e180be5
   ws:
     specifier: ^8.13.0
     version: 8.13.0
@@ -880,6 +880,11 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
+  /semiver@1.1.0:
+    resolution: {integrity: sha512-QNI2ChmuioGC1/xjyYwyZYADILWyW6AmS1UH6gDj/SFUUUS4MBAWs/7mxnkRPc/F4iHezDP+O8t0dO8WHiEOdg==}
+    engines: {node: '>=6'}
+    dev: false
+
   /shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
     engines: {node: '>=8'}
@@ -992,8 +997,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/flosrn/midjourney-api/76d49f094a79408484d643cefb5a595f4187671e:
-    resolution: {tarball: https://codeload.github.com/flosrn/midjourney-api/tar.gz/76d49f094a79408484d643cefb5a595f4187671e}
+  github.com/flosrn/midjourney-api/d22fb70cb71209ea139044cfdde992285e180be5:
+    resolution: {tarball: https://codeload.github.com/flosrn/midjourney-api/tar.gz/d22fb70cb71209ea139044cfdde992285e180be5}
     name: midjourney-api
     version: 4.0.0
     engines: {node: '>=18'}
@@ -1001,6 +1006,7 @@ packages:
       '@huggingface/inference': 2.6.1
       async: 3.2.4
       isomorphic-ws: 5.0.0(ws@8.13.0)
+      semiver: 1.1.0
       snowyflake: 2.0.0
       tslib: 2.6.0
       ws: 8.13.0
