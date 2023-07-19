@@ -13,7 +13,8 @@ wss.on("connection", (ws) => {
       const parsedData = JSON.parse(data);
       console.log("parsedData", parsedData);
 
-      const { generationType, prompt, content, index, option } = parsedData;
+      const { generationType, prompt, content, index, option, newPrompt } =
+        parsedData;
 
       const client = new Midjourney({
         ServerId: <string>process.env.SERVER_ID,
@@ -59,9 +60,8 @@ wss.on("connection", (ws) => {
           });
           break;
         case "vary":
-          const varyOption = option.charAt(0).toUpperCase() + option.slice(1);
           const varyStrong = content.options?.find(
-            (option) => option.label === `Vary (${varyOption})`
+            (contentOption) => contentOption.label === `Vary (${option})`
           );
           result = await client.Custom({
             msgId: content.id,
@@ -74,11 +74,55 @@ wss.on("connection", (ws) => {
           });
           break;
         case "zoomOut":
-          result = await client.ZoomOut({
-            level: option,
+          if (option === "Custom Zoom" && newPrompt) {
+            const zoomOutOption = content.options?.find(
+              (contentOption) => contentOption.label === option
+            );
+            result = await client.Custom({
+              msgId: content.id,
+              flags: content.flags,
+              content: `${newPrompt} --zoom 2`,
+              customId: zoomOutOption.custom,
+              loading: (uri: string, progress: string) => {
+                ws.send(JSON.stringify({ uri, progress }));
+              },
+            });
+            break;
+          } else {
+            result = await client.ZoomOut({
+              level: option,
+              msgId: content.id,
+              hash: content.hash,
+              flags: content.flags,
+              loading: (uri: string, progress: string) => {
+                ws.send(JSON.stringify({ uri, progress }));
+              },
+            });
+          }
+          break;
+        case "square":
+          const squareOption = content.options?.find(
+            (contentOption) => contentOption.label === option
+          );
+          result = await client.Custom({
             msgId: content.id,
-            hash: content.hash,
             flags: content.flags,
+            content: prompt,
+            customId: squareOption.custom,
+            loading: (uri: string, progress: string) => {
+              ws.send(JSON.stringify({ uri, progress }));
+            },
+          });
+          break;
+        case "pan":
+          const panOption = content.options?.find((contentOption) =>
+            contentOption.custom.includes(option)
+          );
+          result = await client.Custom({
+            msgId: content.id,
+            flags: content.flags,
+            content: prompt,
+            customId: panOption.custom,
             loading: (uri: string, progress: string) => {
               ws.send(JSON.stringify({ uri, progress }));
             },
