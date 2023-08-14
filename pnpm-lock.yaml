@@ -13,7 +13,7 @@ dependencies:
     version: 0.18.11
   midjourney:
     specifier: github:flosrn/midjourney-api
-    version: github.com/flosrn/midjourney-api/3f6665eeb31906470560f5afdef80a57427a37c3
+    version: github.com/flosrn/midjourney-api/66701195e90d91515a366244c9934c5fafe12cd8
   ws:
     specifier: ^8.13.0
     version: 8.13.0
@@ -997,8 +997,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/flosrn/midjourney-api/3f6665eeb31906470560f5afdef80a57427a37c3:
-    resolution: {tarball: https://codeload.github.com/flosrn/midjourney-api/tar.gz/3f6665eeb31906470560f5afdef80a57427a37c3}
+  github.com/flosrn/midjourney-api/66701195e90d91515a366244c9934c5fafe12cd8:
+    resolution: {tarball: https://codeload.github.com/flosrn/midjourney-api/tar.gz/66701195e90d91515a366244c9934c5fafe12cd8}
     name: midjourney-api
     version: 4.0.0
     engines: {node: '>=18'}
